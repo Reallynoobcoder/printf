@@ -13,7 +13,6 @@ typedef struct
 	const char *s;
 } FormatSpecifier;
 
-	int
 _printf(const char *format, ...)
 {
 	va_list args;
@@ -32,7 +31,7 @@ _printf(const char *format, ...)
 		}
 		else if (format[i] == '%')
 		{
-			i++;			
+			i++;
 
 			if (format[i] == 'c')
 			{
@@ -63,7 +62,6 @@ _printf(const char *format, ...)
 			}
 		}
 	}
-
 	va_end (args);
-	return chars_printed;
+	return (chars_printed);
 }
