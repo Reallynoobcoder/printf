@@ -13,14 +13,17 @@ typedef struct
 	const char *s;
 } FormatSpecifier;
 
-_printf(const char *format, ...)
+	int _printf(const char *format, ...)
 {
 	va_list args;
-	va_start (args, format);
 
 	int chars_printed = 0;
+	int i, j;
 	FormatSpecifier fs;
-	int i;
+	va_start (args, format);
+
+	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -42,7 +45,7 @@ _printf(const char *format, ...)
 			else if (format[i] == 's')
 			{
 				fs.s = va_arg (args, const char *);
-				for (int j = 0; fs.s[j] != '\0'; j++)
+				for (j = 0; fs.s[j] != '\0'; j++)
 				{
 					putchar (fs.s[j]);
 					chars_printed++;
@@ -57,7 +60,7 @@ _printf(const char *format, ...)
 			else if (format[i] != '%')
 			{
 				putchar ('%');
-				putchar (format[i]);
+				putchar (format[i - 1]);
 				chars_printed += 2;
 			}
 		}
