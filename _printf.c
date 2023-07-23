@@ -34,7 +34,6 @@ FormatSpecifier format_map[] = {
 	{'c', print_char},
 	{'s', print_string},
 	{'%', print_percent},
-	{'\0', NULL}
 };
 
 int _printf(const char *format, ...) {
