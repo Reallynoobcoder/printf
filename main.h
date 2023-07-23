@@ -1,5 +1,5 @@
-#ifndef  HEAD_H
-#define  HEAD_H
+#ifndef  MAIN_H
+#define  Main_H
 
 #include <string.h>
 #include <stdarg.h>
@@ -10,4 +10,4 @@
 
 int _printf(const char *format, ...);
 
-#define
+#endif
