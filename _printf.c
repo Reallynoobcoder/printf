@@ -1,5 +1,9 @@
 #include "main.h"
-
+/*
+*_printf test
+*
+*
+   */
 typedef struct {
 	char type;
 	void (*print_function)(va_list);
