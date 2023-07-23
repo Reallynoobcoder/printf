@@ -34,6 +34,7 @@ FormatSpecifier format_map[] = {
 	{'c', print_char},
 	{'s', print_string},
 	{'%', print_percent},
+	{'\0', NULL}
 };
 
 int _printf(const char *format, ...) {
@@ -54,7 +55,7 @@ if (!format || (format[0] == '%' && !format[1]))
 			len_count++;
 		} else if (format[i] == '%') {
 			i++;
-			for (j = sizeof(format_map) / sizeof(format_map[0]); j > 0; --j)
+			for (int j = 0; s[j] != '\0'; j++)
 			{
 				if (format[i] == format_map[j].type) {
 					format_map[j].print_function(args);
