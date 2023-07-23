@@ -1,4 +1,10 @@
 #include "main.h"
+/**
+ * _printf - Prints a formatted string.
+ * @format: A string containing all the desired characters.
+ *
+ * Return: The total count of the characters printed.
+ */
 
 typedef struct
 {
