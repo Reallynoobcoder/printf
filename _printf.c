@@ -24,10 +24,10 @@ void print_percent(va_list args) {
 	putchar('%');
 }
 
-void print_unknown(va_list args) {
-	char c = va_arg(args, int);
-	putchar('%');
-	putchar(c);
+void print_unknown(va_list args, int c) {
+	(void)args;
+    putchar('%');
+    putchar(c);
 }
 
 FormatSpecifier format_map[] = {
@@ -58,9 +58,9 @@ int _printf(const char *format, ...) {
 				}
 			}
 			if (format_map[j].type == '\0') {
-				print_unknown(args);
-				len_count = len_count + 2;
-			}
+    print_unknown(args, format[i]);
+    len_count = len_count + 2;
+}
 		}
 	}
 
