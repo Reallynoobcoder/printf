@@ -1,5 +1,5 @@
-#ifndef
-#define
+#ifndef  HEAD_H
+#define  HEAD_H
 
 #include <string.h>
 #include <stdarg.h>
