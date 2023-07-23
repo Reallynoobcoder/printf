@@ -12,7 +12,8 @@ void print_char(va_list args) {
 
 void print_string(va_list args) {
     const char *s = va_arg(args, const char*);
-    for (int j = 0; s[j] != '\0'; j++) {
+    int j;
+    for (j = 0; s[j] != '\0'; j++) {
         putchar(s[j]);
     }
 }
@@ -36,11 +37,11 @@ FormatSpecifier format_map[] = {
 
 int _printf(const char *format, ...) {
     va_list args;
-    va_start(args, format);
-
     int len_count = 0;
     int i, j;
 
+    va_start(args, format);
+    
     for (i = 0; format[i] != '\0'; ++i) {
         if (format[i] != '%') {
             putchar(format[i]);
