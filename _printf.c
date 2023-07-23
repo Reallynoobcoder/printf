@@ -54,7 +54,7 @@ if (!format || (format[0] == '%' && !format[1]))
 			len_count++;
 		} else if (format[i] == '%') {
 			i++;
-			for (j = sizeof(format_map) / sizeof(format_map[0]); j >= 0; --j)
+			for (j = sizeof(format_map) / sizeof(format_map[0]); j > 0; --j)
 			{
 				if (format[i] == format_map[j].type) {
 					format_map[j].print_function(args);
