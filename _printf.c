@@ -1,70 +1,69 @@
 #include "main.h"
-/**
- * _printf - Prints a formatted string
- * @format: A string containing all the desired characters
- *
- * Return: The total count of the characters printed
- */
 
-typedef struct
-{
+typedef struct {
 	char type;
-	char c;
-	const char *s;
+	void (*print_function)(va_list);
 } FormatSpecifier;
 
-	int _printf(const char *format, ...)
+void print_char(va_list args) {
+	char c = va_arg(args, int);
+	putchar(c);
+}
+
+void print_string(va_list args)
 {
+	int j;
+	const char *s = va_arg(args, const char*);
+	for (j = 0; s[j] != '\0'; j++) {
+		putchar(s[j]);
+	}
+}
+
+void print_percent(va_list args) {
+	(void)args;
+	putchar('%');
+}
+
+void print_unknown(va_list args) {
+	char c = va_arg(args, int);
+	putchar('%');
+	putchar(c);
+}
+
+FormatSpecifier format_map[] = {
+	{'c', print_char},
+	{'s', print_string},
+	{'%', print_percent},
+	{'\0', NULL}
+};
+
+int _printf(const char *format, ...) {
 	va_list args;
-
-	int chars_printed = 0;
+	int len_count = 0;
 	int i, j;
-	FormatSpecifier fs;
-	va_start (args, format);
 
-	if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-		return (-1);
-
-	for (i = 0; format[i] != '\0'; i++)
-	{
-		if (format[i] != '%')
-		{
-			putchar (format[i]);
-			chars_printed++;
-		}
-		else if (format[i] == '%')
-		{
+	va_start(args, format);
+	for (i = 0; format[i] != '\0'; ++i) {
+		if (format[i] != '%') {
+			putchar(format[i]);
+			len_count++;
+		} else if (format[i] == '%') {
 			i++;
-
-			if (format[i] == 'c')
+			for (j = sizeof(format_map) / sizeof(format_map[0]); j >= 0; --j)
 			{
-				fs.c = (char) va_arg (args, int);
-				putchar (fs.c);
-				chars_printed++;
-			}
-			else if (format[i] == 's')
-			{
-				fs.s = va_arg (args, const char *);
-				for (j = 0; fs.s[j] != '\0'; j++)
-				{
-					putchar (fs.s[j]);
-					chars_printed++;
+				if (format[i] == format_map[j].type) {
+					format_map[j].print_function(args);
+					len_count++;
+					break;
 				}
 			}
-
-			else if (format[i] == '%')
-			{
-				putchar ('%');
-				chars_printed++;
-			}
-			else if (format[i] != '%')
-			{
-				putchar ('%');
-				putchar (format[i - 1]);
-				chars_printed += 2;
+			if (format_map[j].type == '\0') {
+				print_unknown(args);
+				len_count = len_count + 2;
 			}
 		}
 	}
-	va_end (args);
-	return (chars_printed);
+
+	va_end(args);
+	return len_count;
 }
