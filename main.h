@@ -8,11 +8,6 @@
 #include <unistd.h>
 #include <errno.h>
 
-typedef struct {
-    char type;
-    void (*print_function)(va_list);
-} FormatSpecifier;
-
 int _printf(const char *format, ...);
 void print_char(va_list args);
 void print_string(va_list args);
