@@ -7,6 +7,15 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+typedef struct {
+    char type;
+    void (*print_function)(va_list);
+} FormatSpecifier;
+
 int _printf(const char *format, ...);
+void print_char(va_list args);
+void print_string(va_list args);
+void print_percent(va_list args);
+void print_unknown(va_list args);
 
 #endif
