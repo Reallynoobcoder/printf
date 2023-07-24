@@ -4,8 +4,8 @@
  *                  It iterates through the format string.
  *
  * @format: The format string containing text and conversion specifiers.
- * @funct_list: The list of conversion specifier mappings.
- * @size: The number of elements in the funct_list array.
+ * @formatMap: The list of conversion specifier mappings.
+ * @size: The number of elements in the formatMap array.
  * @args: The variadic argument list.
  *
  * Return: The total number of characters printed on success, or -1 on failure.
@@ -69,11 +69,11 @@ int _printf(const char *format, ...)
 	int len_count = 0;
 
 	trans formatMap[] = {
-		{"c", p_char},
-		{"s", p_string},
-		{"%", p_percent},
-		{"d", p_integer},
-		{"i", p_integer}
+		{"c", print_char},
+		{"s", print_string},
+		{"%", print_percent},
+		{"d", print_integer},
+		{"i", print_integer}
 	};
 	int size = sizeof(formatMap) / sizeof(formatMap[0]);
 	va_list args;

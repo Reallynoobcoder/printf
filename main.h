@@ -1,5 +1,5 @@
-#ifndef  MAIN_H
-#define  MAIN_H
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <string.h>
 #include <stdarg.h>
@@ -8,20 +8,25 @@
 #include <unistd.h>
 #include <stddef.h>
 
+/**
+ * struct convert - Convert specifier mapping and its corresponding function.
+ *
+ * @spef: The conversion specifier string.
+ * @f_ptr: Pointer to the corresponding function that handles the conversion.
+ */
 typedef struct convert
 {
-    char *spef;
-    int (*f_ptr)(va_list);
+	char *spef;
+	int (*f_ptr)(va_list);
 } trans;
 
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int parser(const char *format, trans formatMap[], va_list args);
-int p_char(va_list);
-int p_string(va_list args);
-int p_percent(va_list);
-int p_integer(va_list);
+int print_char(va_list);
+int print_string(va_list args);
+int print_percent(va_list);
+int print_integer(va_list);
 #define ERROR -1
 
 #endif
