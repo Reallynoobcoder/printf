@@ -1,16 +1,14 @@
 #include "main.h"
 
-
 int parser(const char *format, conver_t funct_list[], va_list args)
 {
     int i, j, r_val, printed_chars;
 
     printed_chars = 0;
-    for (i = 0; format[i] != '\0'; i++)/* Iterates through the main str*/
+    for (i = 0; format[i] != '\0'; i++)
     {
-        if (format[i] == '%') /*Checks for format specifiers*/
+        if (format[i] == '%') 
         {
-            /*Iterates through struct to find the right func*/
             for (j = 0; funct_list[j].sym != NULL; j++)
             {
                 if (format[i + 1] == funct_list[j].sym[0])
@@ -33,11 +31,11 @@ int parser(const char *format, conver_t funct_list[], va_list args)
                 else
                     return (-1);
             }
-            i = i + 1; /*Updating i to skip format symbols*/
+            i = i + 1;
         }
         else
         {
-            _putchar(format[i]); /*call the write function*/
+            _putchar(format[i]);
             printed_chars++;
         }
     }
@@ -62,11 +60,8 @@ int _printf(const char *format, ...)
 
     va_start(args, format);
 
-    /** call a parser function*/
-
     printed_chars = parser(format, funct_list, args);
     va_end(args);
 
     return (printed_chars);
 }
-
