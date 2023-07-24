@@ -12,7 +12,7 @@
  */
 
 int process_format(const char *format,
-		conver_t *funct_list, int size, va_list args)
+		trans *funct_list, int size, va_list args)
 {
 	int i, j, r_val;
 	int result = 0;
@@ -23,7 +23,7 @@ int process_format(const char *format,
 		{
 			for (j = 0; j < size; j++)
 			{
-				if (format[i + 1] == funct_list[j].sym[0])
+				if (format[i + 1] == funct_list[j].spef[0])
 				{
 					r_val = funct_list[j].f(args);
 					if (r_val == -1)
@@ -32,7 +32,7 @@ int process_format(const char *format,
 					break;
 				}
 			}
-			if (funct_list[j].sym == NULL && format[i + 1] != ' ')
+			if (funct_list[j].spef == NULL && format[i + 1] != ' ')
 			{
 				if (format[i + 1] != '\0')
 				{
@@ -66,9 +66,9 @@ int process_format(const char *format,
 
 int _printf(const char *format, ...)
 {
-	int result = 0;
+	int len_count = 0;
 
-	conver_t funct_list[] = {
+	trans funct_list[] = {
 		{"c", p_char},
 		{"s", p_string},
 		{"%", p_percent},
@@ -84,7 +84,7 @@ int _printf(const char *format, ...)
 		va_end(args);
 		return (-1);
 	}
-	result = process_format(format, funct_list, size, args);
+	len_count = process_format(format, funct_list, size, args);
 	va_end(args);
-	return (result);
+	return (len_count);
 }

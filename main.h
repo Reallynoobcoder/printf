@@ -8,17 +8,16 @@
 #include <unistd.h>
 #include <stddef.h>
 
-struct convert
+typedef struct convert
 {
-    char *sym;
+    char *spef;
     int (*f)(va_list);
-};
-typedef struct convert conver_t;
+} trans;
 
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int parser(const char *format, conver_t funct_list[], va_list args);
+int parser(const char *format, trans funct_list[], va_list args);
 int p_char(va_list);
 int p_string(va_list args);
 int p_percent(va_list);
