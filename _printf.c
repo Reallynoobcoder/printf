@@ -9,7 +9,7 @@ int parser(const char *format, conver_t funct_list[], va_list args)
     {
         if (format[i] == '%') 
         {
-            for (j = 0; funct_list[j].sym != NULL; j++)
+            for (j = 0; j < num_elements; j++)
             {
                 if (format[i + 1] == funct_list[j].sym[0])
                 {
@@ -49,8 +49,8 @@ int _printf(const char *format, ...)
         {"c", p_char},
         {"s", p_string},
         {"%", p_percent},
-        {NULL, NULL}
     };
+    int num_elements = sizeof(funct_list) / sizeof(funct_list[0]);
 
     va_list args;
 
