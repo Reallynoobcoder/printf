@@ -1,4 +1,7 @@
 #include "main.h"
+/*
+ * no zhi(
+ */
 
 int p_char(va_list args)
 {
