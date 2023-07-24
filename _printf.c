@@ -1,4 +1,7 @@
 #include "main.h"
+/*
+*hakouna matata printf
+*/
 
 int parser(const char *format, conver_t funct_list[], va_list args)
 {
