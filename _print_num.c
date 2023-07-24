@@ -57,9 +57,9 @@ int print_number(va_list args)
 
 int print_integer(va_list args)
 {
-	int n;
+	int num;
 
-	n = print_number(args);
-	return (n);
+	num = print_number(args);
+	return (num);
 
 }

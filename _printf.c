@@ -15,7 +15,7 @@ int process_format(const char *format,
 		trans *formatMap, int size, va_list args)
 {
 	int i, j, rv;
-	int result = 0;
+	int len_count = 0;
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -28,7 +28,7 @@ int process_format(const char *format,
 					rv = formatMap[j].f_ptr(args);
 					if (rv == -1)
 						return (-1);
-					result += rv;
+					len_count = len_count + rv;
 					break;
 				}
 			}
@@ -38,7 +38,7 @@ int process_format(const char *format,
 				{
 					_putchar(format[i]);
 					_putchar(format[i + 1]);
-					result += 2;
+					len_count = len_count + 2;
 				}
 				else
 					return (-1);
@@ -48,10 +48,10 @@ int process_format(const char *format,
 		else
 		{
 			_putchar(format[i]);
-			result++;
+			len_count++;
 		}
 	}
-	return (result);
+	return (len_count);
 }
 
 /**

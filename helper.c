@@ -12,10 +12,10 @@
  */
 int print_char(va_list args)
 {
-	char value;
+	char c;
 
-	value = va_arg(args, int);
-	_putchar(value);
+	c = va_arg(args, int);
+	_putchar(c);
 	return (1);
 }
 
@@ -33,13 +33,13 @@ int print_char(va_list args)
 int print_string(va_list args)
 {
 	int i;
-	const char *s;
+	char *str;
 
-	s = va_arg(args, const char *);
-	if (s == NULL)
-		s = "(null)";
-	for (i = 0; s[i] != '\0'; i++)
-		_putchar(s[i]);
+	str = va_arg(args, char *);
+	if (str == NULL)
+		str = "(null)";
+	for (i = 0; str[i] != '\0'; i++)
+		_putchar(str[i]);
 	return (i);
 }
 
@@ -54,8 +54,9 @@ int print_string(va_list args)
  * Return: Always returns 1 (number of characters printed).
  */
 
-int print_percent(__attribute__((unused)) va_list args)
+int print_percent(va_list args)
 {
+	(void)args;
 	_putchar('%');
 	return (1);
 }
