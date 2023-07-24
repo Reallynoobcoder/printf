@@ -38,7 +38,7 @@ int size = (sizeof(funct_list) / sizeof(funct_list[0]));
                     break;
                 }
             }
-            if (funct_list[j].sym == NULL && format[i + 1] != ' ')
+            if (size == j && format[i + 1] != ' ')
             {
                 if (format[i + 1] != '\0')
                 {
