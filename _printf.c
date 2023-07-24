@@ -12,9 +12,9 @@
  */
 
 int process_format(const char *format,
-		trans *funct_list, int size, va_list args)
+		trans *formatMap, int size, va_list args)
 {
-	int i, j, r_val;
+	int i, j, rv;
 	int result = 0;
 
 	for (i = 0; format[i] != '\0'; i++)
@@ -23,16 +23,16 @@ int process_format(const char *format,
 		{
 			for (j = 0; j < size; j++)
 			{
-				if (format[i + 1] == funct_list[j].spef[0])
+				if (format[i + 1] == formatMap[j].spef[0])
 				{
-					r_val = funct_list[j].f(args);
-					if (r_val == -1)
+					rv = formatMap[j].f_ptr(args);
+					if (rv == -1)
 						return (-1);
-					result += r_val;
+					result += rv;
 					break;
 				}
 			}
-			if (funct_list[j].spef == NULL && format[i + 1] != ' ')
+			if (j == size && format[i + 1] != ' ')
 			{
 				if (format[i + 1] != '\0')
 				{
@@ -43,7 +43,7 @@ int process_format(const char *format,
 				else
 					return (-1);
 			}
-			i = i + 1;
+			i++;
 		}
 		else
 		{
@@ -68,14 +68,14 @@ int _printf(const char *format, ...)
 {
 	int len_count = 0;
 
-	trans funct_list[] = {
+	trans formatMap[] = {
 		{"c", p_char},
 		{"s", p_string},
 		{"%", p_percent},
 		{"d", p_integer},
 		{"i", p_integer}
 	};
-	int size = sizeof(funct_list) / sizeof(funct_list[0]);
+	int size = sizeof(formatMap) / sizeof(formatMap[0]);
 	va_list args;
 
 	va_start(args, format);
@@ -84,7 +84,7 @@ int _printf(const char *format, ...)
 		va_end(args);
 		return (-1);
 	}
-	len_count = process_format(format, funct_list, size, args);
+	len_count = process_format(format, formatMap, size, args);
 	va_end(args);
 	return (len_count);
 }

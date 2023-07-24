@@ -11,13 +11,13 @@
 typedef struct convert
 {
     char *spef;
-    int (*f)(va_list);
+    int (*f_ptr)(va_list);
 } trans;
 
 
 int _putchar(char c);
 int _printf(const char *format, ...);
-int parser(const char *format, trans funct_list[], va_list args);
+int parser(const char *format, trans formatMap[], va_list args);
 int p_char(va_list);
 int p_string(va_list args);
 int p_percent(va_list);
