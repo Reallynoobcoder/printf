@@ -13,35 +13,30 @@
 
 int print_number(va_list args)
 {
-	int n;
-	int check;
-	int len;
-	unsigned int num;
-
-	n  = va_arg(args, int);
-	check = 1;
-	len = 0;
+	int n = va_arg(args, int);
+	int check = 1;
+	int len_count = 0;
+	unsigned int num = (n < 0) ? -n : n;
 
 	if (n < 0)
 	{
-		len += _putchar('-');
-		num = n * -1;
+		len_count += _putchar('-');
 	}
-	else
-		num = n;
 
-	for (; num / check > 9; )
+	while (num / check > 9)
 		check *= 10;
 
-	for (; check != 0; )
+
+	while (check != 0)
 	{
-		len += _putchar('0' + num / check);
+		len_count += _putchar(num / check + '0);
 		num %= check;
 		check /= 10;
 	}
 
-	return (len);
+	return (len_count);
 }
+
 
 /**
  * print_integer - Print an integer from variadic arguments.
