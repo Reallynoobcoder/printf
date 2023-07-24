@@ -72,6 +72,8 @@ int _printf(const char *format, ...)
 		{"c", p_char},
 		{"s", p_string},
 		{"%", p_percent},
+		{"d", p_integer},
+		{"i", p_integer}
 	};
 	int size = sizeof(funct_list) / sizeof(funct_list[0]);
 	va_list args;

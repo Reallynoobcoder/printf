@@ -22,6 +22,7 @@ int parser(const char *format, conver_t funct_list[], va_list args);
 int p_char(va_list);
 int p_string(va_list args);
 int p_percent(va_list);
+int p_integer(va_list);
 #define ERROR -1
 
 #endif
