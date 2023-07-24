@@ -1,75 +1,67 @@
 #include "main.h"
 
-typedef struct {
-	char type;
-	void (*print_function)(va_list);
-} FormatSpecifier;
-
-void print_char(va_list args) {
-	char c = va_arg(args, int);
-	putchar(c);
-}
-
-void print_string(va_list args)
+int parser(const char *format, conver_t funct_list[], va_list args)
 {
-	int j;
-	const char *s = va_arg(args, const char*);
-	for (j = 0; s[j] != '\0'; j++) {
-		putchar(s[j]);
-	}
+    int i, j, r_val, printed_chars;
+
+    printed_chars = 0;
+    for (i = 0; format[i] != '\0'; i++)
+    {
+        if (format[i] == '%') 
+        {
+            for (j = 0; funct_list[j].sym != NULL; j++)
+            {
+                if (format[i + 1] == funct_list[j].sym[0])
+                {
+                    r_val = funct_list[j].f(args);
+                    if (r_val == -1)
+                        return (-1);
+                    printed_chars += r_val;
+                    break;
+                }
+            }
+            if (funct_list[j].sym == NULL && format[i + 1] != ' ')
+            {
+                if (format[i + 1] != '\0')
+                {
+                    _putchar(format[i]);
+                    _putchar(format[i + 1]);
+                    printed_chars = printed_chars + 2;
+                }
+                else
+                    return (-1);
+            }
+            i = i + 1;
+        }
+        else
+        {
+            _putchar(format[i]);
+            printed_chars++;
+        }
+    }
+    return (printed_chars);
 }
+int _printf(const char *format, ...)
+{
+    int printed_chars;
 
-void print_percent(va_list args) {
-	(void)args;
-	putchar('%');
-}
+    conver_t funct_list[] =    {
+        {"c", p_char},
+        {"s", p_string},
+        {"%", p_percent},
+        {NULL, NULL}
+    };
 
-void print_unknown(va_list args, int c) {
-	(void)args;
-	putchar('%');
-	putchar(c);
-}
+    va_list args;
 
-FormatSpecifier format_map[] = {
-	{'c', print_char},
-	{'s', print_string},
-	{'%', print_percent},
-	{'\0', NULL}
-};
 
-int _printf(const char *format, ...) {
-	va_list args;
-	int len_count = 0;
-	int i, j;
+    if (format == NULL)
+        return (-1);
 
-	va_start(args, format);
-	
-if (!format || (format[0] == '%' && !format[1]))
-		return (-1);
-	if (format[0] == '%' && format[1] == ' ' && !format[2])
-		return (-1);
+    va_start(args, format);
 
-	for (i = 0; format[i] != '\0'; ++i) {
-		if (format[i] != '%') {
-			putchar(format[i]);
-			len_count++;
-		} else if (format[i] == '%') {
-			i++;
-			for (j = 0; format_map[j].type != '\0'; j++)
-			{
-				if (format[i] == format_map[j].type) {
-					format_map[j].print_function(args);
-					len_count++;
-					break;
-				}
-			}
-			if (format_map[j].type == '\0') {
-				print_unknown(args, format[i]);
-				len_count = len_count + 2;
-			}
-		}
-	}
+    printed_chars = parser(format, funct_list, args);
+    va_end(args);
 
-	va_end(args);
-	return len_count;
+    return (printed_chars);
 }
