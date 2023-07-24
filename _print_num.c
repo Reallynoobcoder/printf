@@ -29,7 +29,7 @@ int print_number(va_list args)
 
 	while (check != 0)
 	{
-		len_count += _putchar(num / check + '0);
+		len_count += _putchar(num / check + '0');
 		num %= check;
 		check /= 10;
 	}
