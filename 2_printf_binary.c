@@ -1,8 +1,16 @@
 #include "main.h"
 
+/**
+ * print_bi - Prints the binary representation of an unsigned integer.
+ *
+ * @n: The unsigned integer to be printed.
+ *
+ * Return: The number of characters printed.
+ */
+
 int print_bi(unsigned int n)
 {
-	unsigned int a, b, c, d, f;
+	unsigned int a, b, c, d, i;
 	int count = 0;
 
 	b = n;
@@ -12,7 +20,7 @@ int print_bi(unsigned int n)
 		b = b / 2;
 		c = c * 2;
 	}
-	for (f = 1; f <= a; f++)
+	for (i = 1; i <= a; i++)
 	{
 		d = n / c;
 		n = n % c;
@@ -22,8 +30,18 @@ int print_bi(unsigned int n)
 	}
 	return (count);
 }
-int print_binary(va_list args) 
+
+/**
+ * print_binary - Prints the binary representation of an unsigned integer.
+ *
+ * @args: The va_list containing the unsigned integer to be printed.
+ *
+ * Return: The number of characters printed.
+ */
+
+int print_binary(va_list args)
 {
 	unsigned int num = va_arg(args, unsigned int);
+
 	return (print_bi(num));
 }
