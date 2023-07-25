@@ -7,20 +7,26 @@
  */
 int print_unsig(unsigned int n)
 {
-	int count = 0;
-	unsigned int num_copy = n;
+	int check;
+    int len;
+    unsigned int num;
 
-	if (n == 0)
-		count = 1;
-	while (num_copy != 0)
-	{
-		num_copy = num_copy / 10;
-		count++;
-	}
-	if (n >= 10)
-		print_unsig(n / 10);
-	_putchar (n % 10 + '0');
-	return (count);
+    check = 1;
+    len = 0;
+
+    num = n;
+
+    for (; num / check > 9; )
+        check *= 10;
+
+    for (; check != 0; )
+    {
+        len += _putchar('0' + num / check);
+        num %= check;
+        check /= 10;
+    }
+
+    return (len);
 }
 /**
  * print_unsigned - Print unsigned decimal numbers.
