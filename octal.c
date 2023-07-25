@@ -8,12 +8,12 @@
 /**
  * print_oct - Print numbers in base 8 (octal).
  * @n: number to print
- * Return: @count, number of chars printed.
+ * Return: @counter, number of chars printed.
  */
 int print_oct(unsigned int n)
 {
 	unsigned int a, b, c, d, f;
-	int count = 0;
+	int counter = 0;
 
 	b = n;
 	c = 1;
@@ -21,7 +21,7 @@ int print_oct(unsigned int n)
 	{
 		b = b / 8;
 		c = c * 8;
-		count++;
+		counter++;
 	}
 	for (f = 1; f <= a; f++)
 	{
@@ -29,9 +29,9 @@ int print_oct(unsigned int n)
 		n = n % c;
 		c = c / 8;
 		_putchar(d + '0');
-		count++;
+		counter++;
 	}
-	return (count);
+	return (counter);
 }
 int print_octal(va_list args)
 {

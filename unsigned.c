@@ -3,24 +3,22 @@
 /**
  * print_unsig - Print unsigned numbers
  * @n: number to print
- * Return: @count, number of chars printed.
+ * Return: @counter, number of chars printed.
  */
 int print_unsig(unsigned int n)
 {
-	int count = 0;
+	int counter;
 	unsigned int num_copy = n;
 
 	if (n == 0)
-		count = 1;
-	while (num_copy != 0)
-	{
+		counter = 1;
+	for (counter = 0; num_copy != 0; counter++)
 		num_copy = num_copy / 10;
-		count++;
-	}
+
 	if (n >= 10)
 		print_unsig(n / 10);
 	_putchar (n % 10 + '0');
-	return (count);
+	return (counter);
 }
 /**
  * print_unsigned - Print unsigned decimal numbers.
