@@ -1,5 +1,12 @@
 #include "main.h"
 
+/**
+ * print_single_hex - Print a character in hexadecimal escape sequence.
+ *
+ * @c: The character to be printed in hexadecimal format.
+ *
+ * Return: The number of characters printed.
+ */
 int print_single_hex(char c)
 {
 	int len_count = 0;
@@ -18,6 +25,15 @@ int print_single_hex(char c)
 
 	return (len_count);
 }
+
+/**
+ * printf_S - Custom printf specifier function to print a string
+ * with non-printable characters in hexadecimal escape sequence.
+ *
+ * @args: The va_list containing the string to be printed.
+ *
+ * Return: The number of characters printed.
+*/
 int printf_S(va_list args)
 {
 	const char *str = va_arg(args, const char *);
@@ -26,18 +42,18 @@ int printf_S(va_list args)
 	if (str == NULL)
 		str = "(null)";
 
-for (i = 0; str[i]; i++)
-{
-    if (str[i] < 32 || str[i] >= 127)
-    {
-        num += print_single_hex(str[i]);
-    }
-    else
-    {
-        _putchar(str[i]);
-        num++;
-    }
-}
+	for (i = 0; str[i]; i++)
+	{
+		if (str[i] < 32 || str[i] >= 127)
+		{
+			num += print_single_hex(str[i]);
+		}
+		else
+		{
+			_putchar(str[i]);
+			num++;
+		}
+	}
 
 	return (num);
 }
