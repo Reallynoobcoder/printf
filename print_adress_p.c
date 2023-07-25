@@ -1,4 +1,12 @@
 #include "main.h"
+
+/**
+ * print_p - Custom printf specifier function to print a pointer address.
+ *
+ * @args: The va_list containing the pointer to be printed.
+ *
+ * Return: The number of characters printed.
+ */
 int print_p(va_list args)
 {
 	void *ptr = va_arg(args, void*);
