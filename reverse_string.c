@@ -1,4 +1,13 @@
 #include "main.h"
+
+/**
+ * printf_reverse - Custom printf function to print a string in reverse.
+ *
+ * @args: The va_list containing the string to be printed in reverse.
+ *
+ * Return: The number of characters printed.
+*/
+
 int printf_reverse(va_list args)
 {
 	char *str = va_arg(args, char*);
