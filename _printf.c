@@ -76,7 +76,8 @@ int _printf(const char *format, ...)
 		{"i", print_integer},
 		{"b", print_binary},
 		{"u", print_unsigned}, {"o", print_octal},
-		{"x", print_hex}, {"X", print_HEX}
+		{"x", print_hex}, {"X", print_HEX},
+		{"S", printf_S}
 	};
 	int size = sizeof(formatMap) / sizeof(formatMap[0]);
 	va_list args;
