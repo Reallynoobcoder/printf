@@ -4,7 +4,6 @@
  * _putchar - Write a character to the standard output.
  *
  * Writes the character 'c' to the standard output (file descriptor 1).
- *
  * @c: The character to be written.
  *
  * Return: On success, returns 1. On error, returns -1 and sets errno.
