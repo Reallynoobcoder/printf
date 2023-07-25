@@ -27,6 +27,7 @@ int print_char(va_list);
 int print_string(va_list args);
 int print_percent(va_list);
 int print_integer(va_list);
+int print_binary(va_list args);
 #define ERROR -1
 
 #endif
