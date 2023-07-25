@@ -1,9 +1,4 @@
 #include "main.h"
- 
-
-
-
-
 
 /**
  * print_oct - Print numbers in base 8 (octal).
@@ -33,10 +28,17 @@ int print_oct(unsigned int n)
 	}
 	return (counter);
 }
+
+/**
+ * print_octal - Convert unsigned int to octal and print.
+ *
+ * @args: The va_list containing the unsigned int to be converted and printed.
+ *
+ * Return: The number of characters printed.
+*/
 int print_octal(va_list args)
 {
-    unsigned int num = va_arg(args, unsigned int);
-    return print_oct(num);
+	unsigned int num = va_arg(args, unsigned int);
+
+	return (print_oct(num));
 }
-
-

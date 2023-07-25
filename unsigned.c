@@ -20,6 +20,7 @@ int print_unsig(unsigned int n)
 	_putchar (n % 10 + '0');
 	return (counter);
 }
+
 /**
  * print_unsigned - Print unsigned decimal numbers.
  * @args: The variadic argument list.
@@ -27,7 +28,7 @@ int print_unsig(unsigned int n)
  */
 int print_unsigned(va_list args)
 {
-    unsigned int num = va_arg(args, unsigned int);
-    return print_unsig(num);
-}
+	unsigned int num = va_arg(args, unsigned int);
 
+	return (print_unsig(num));
+}
