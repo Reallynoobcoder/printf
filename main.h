@@ -33,6 +33,7 @@ int print_HEX(va_list args);
 int print_octal(va_list args);
 int print_unsigned(va_list args);
 int printf_S(va_list args);
+int print_p(va_list args);
 #define ERROR -1
 
 #endif
