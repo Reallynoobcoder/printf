@@ -1,5 +1,5 @@
 #include "main.h"
-char *str = va_arg(args, char*);
+	char *str = va_arg(args, char*);
 int i = 0;
 int str_len = 0;
 
