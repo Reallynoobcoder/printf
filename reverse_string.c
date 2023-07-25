@@ -1,19 +1,18 @@
 #include "main.h"
-	char *str = va_arg(args, char*);
-int i = 0;
-int str_len = 0;
-
-while (str[i])
-    i++;
-
-i--;
-
-while (i >= 0)
+int printf_reverse(va_list args)
 {
-    _putchar(str[i]);
-    str_len++;
-    i--;
+	char *str = va_arg(args, char*);
+	int i = 0;
+	int str_len = 0;
+
+	while (str[i])
+		i++;
+	i--;
+	while (i >= 0)
+	{
+		_putchar(str[i]);
+		str_len++;
+		i--;
+	}
+	return (str_len);
 }
-
-return str_len;
-
