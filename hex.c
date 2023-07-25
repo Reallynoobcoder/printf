@@ -4,6 +4,11 @@
  *@n: unsigned int
  * Return: numer times print
  */
+/**
+ * print_hexalow - convert unsigned int in hexadecimal
+ *@n: unsigned int
+ * Return: numer times print
+ */
 int print_hexalow(unsigned int n)
 {
 	int i, j, remainder, count = 0;

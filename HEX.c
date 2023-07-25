@@ -1,9 +1,4 @@
 #include "main.h"
-/**
- * print_hexaup - Print number in hexadecimal with upper numbers
- *@n: unsigned int
- * Return: numer times print
- */
 int print_hexaup(unsigned int n)
 {
 	int i, j, remainder, count = 0;
