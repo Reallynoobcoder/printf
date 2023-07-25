@@ -1,3 +1,4 @@
+#include "main.h"
 int print_hexalow(unsigned int n)
 {
     int i, j, remainder, count = 0;
@@ -33,4 +34,7 @@ int print_hexalow(unsigned int n)
     free(hexadecimal);
     return (count);
 }
-
+int print_hex(va_list args) {
+    unsigned int num = va_arg(args, unsigned int);
+    return print_hexalow(num);
+}
