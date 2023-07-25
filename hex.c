@@ -1,14 +1,13 @@
 #include "main.h"
+
 /**
- * print_hexalow - convert unsigned int in hexadecimal
- *@n: unsigned int
- * Return: numer times print
- */
-/**
- * print_hexalow - convert unsigned int in hexadecimal
- *@n: unsigned int
- * Return: numer times print
- */
+ * print_hexalow - Convert unsigned int to lowercase hexadecimal and print it.
+ *
+ * @n: The unsigned integer to be printed in hexadecimal.
+ *
+ * Return: The number of characters printed.
+*/
+
 int print_hexalow(unsigned int n)
 {
 	int i, j, remainder, count = 0;
@@ -43,7 +42,17 @@ int print_hexalow(unsigned int n)
 	return (count);
 }
 
-int print_hex(va_list args) {
-    unsigned int num = va_arg(args, unsigned int);
-    return print_hexalow(num);
+/**
+ * print_hex - Convert unsigned int to lowercase hexadecimal and print.
+ *
+ * @args: The va_list containing the unsigned int to be printed.
+ *
+ * Return: The number of characters printed.
+*/
+
+int print_hex(va_list args)
+{
+	unsigned int num = va_arg(args, unsigned int);
+
+	return (print_hexalow(num));
 }
